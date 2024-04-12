@@ -1,0 +1,19 @@
+build:
+  gpu: true
+  system_packages:
+    - "python3-opencv"
+  cuda: "11.6"
+  python_version: "3.9"
+  python_packages:
+    - "diffusers"
+    - "peft"
+    - "torch==2.0.0"
+    - "opencv-contrib-python-headless==4.6.0.66"
+    - "controlnet-aux==0.0.3"
+    - "transformers"
+    - "xformers"
+    - "accelerate"
+    - "triton"
+    - "compel"
+
+predict: "predict.py:Predictor"
