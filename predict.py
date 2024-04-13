@@ -233,7 +233,7 @@ class Predictor(BasePredictor):
             description="disabled on 0", default=0,
         ), 
     ) -> List[Path]:
-
+        print("1")
         if not disable_safety_check and 'nude' in prompt:
             raise Exception(
                 f"NSFW content detected. try a different prompt."
@@ -244,16 +244,19 @@ class Predictor(BasePredictor):
         images = []
         w = None
         h= None
-
+        print("2")
         if lineart_image:
             adapters.append(self.lineart_adapter)
             conditioning_scales.append(lineart_conditioning_scale)
+            print("3")
             lineart_image = Image.open(lineart_image).convert('RGB')
             img = self.lineart_detector(lineart_image, detect_resolution=384, image_resolution=1024).convert('RGB')
+            print("4")
             i = resize_image(img, max_width if not w else w, max_height if not w else h)
             if not w:
                 w, h= i.size
             images.append(i)
+            print("5")
         
         if depth_image:
             depth_image = Image.open(depth_image).convert('RGB')
@@ -265,7 +268,7 @@ class Predictor(BasePredictor):
                 w, h= i.size
             images.append(i)
         
-
+        print("6")
         lora_weights=[]
         loras= []
         if lightning_lora_weight!=0:
@@ -278,7 +281,7 @@ class Predictor(BasePredictor):
         
         if seed is None:
             seed = int.from_bytes(os.urandom(2), "big")
-
+        print("7")
         if ip_adapter_image:
             self.pipe.set_ip_adapter_scale(ip_adapter_weight)
             ip_image = resize_image(ip_adapter_image)
@@ -295,10 +298,10 @@ class Predictor(BasePredictor):
             self.pipe.safety_checker = None
 
         self.pipe.scheduler = SCHEDULERS[scheduler].from_config(self.pipe.scheduler.config)
-
+        print("8")
         conditioning, pooled = self.compel(prompt)
         n_conditioning, n_pooled = self.compel(negative_prompt)
-
+        print("9")
         output = self.pipe(
             # prompt, negative_prompt= negative_prompt,
             prompt_embeds=conditioning, pooled_prompt_embeds=pooled,
