@@ -31,9 +31,10 @@ from controlnet_aux import (
     OpenposeDetector,
     MLSDdetector,
     CannyDetector,
-    LineartDetector,
-    MidasDetector
 )
+from controlnet_aux.midas import MidasDetector
+from controlnet_aux.lineart import LineartDetector
+
 from compel import Compel
 from diffusers.models import AutoencoderKL
 import json

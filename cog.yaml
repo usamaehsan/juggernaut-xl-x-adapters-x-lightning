@@ -9,7 +9,7 @@ build:
     - "peft"
     - "torch"
     - "opencv-contrib-python-headless==4.6.0.66"
-    - "controlnet-aux==0.0.3"
+    - "controlnet-aux==0.0.7"
     - "transformers"
     - "xformers"
     - "accelerate"
