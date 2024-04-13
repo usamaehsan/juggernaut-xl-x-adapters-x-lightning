@@ -1,14 +1,6 @@
 
 
-SCHEDULERS = {
-    "DDIM": DDIMScheduler,
-    "DPMSolverMultistep": DPMSolverMultistepScheduler,
-    "HeunDiscrete": HeunDiscreteScheduler,
-    "KarrasDPM": KarrasDPM,
-    "K_EULER_ANCESTRAL": EulerAncestralDiscreteScheduler,
-    "K_EULER": EulerDiscreteScheduler,
-    "PNDM": PNDMScheduler,
-}
+
 
 from typing import Optional
 import torch
@@ -32,6 +24,7 @@ from diffusers import (
     LMSDiscreteScheduler,
     PNDMScheduler,
     UniPCMultistepScheduler,
+    KarrasDPM
 )
 from controlnet_aux import (
     HEDdetector,
@@ -46,6 +39,17 @@ from diffusers.models import AutoencoderKL
 import json
 from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
+
+
+SCHEDULERS = {
+    "DDIM": DDIMScheduler,
+    "DPMSolverMultistep": DPMSolverMultistepScheduler,
+    "HeunDiscrete": HeunDiscreteScheduler,
+    "KarrasDPM": KarrasDPM,
+    "K_EULER_ANCESTRAL": EulerAncestralDiscreteScheduler,
+    "K_EULER": EulerDiscreteScheduler,
+    "PNDM": PNDMScheduler,
+}
 
 def resize_image(image, max_width, max_height):
     """
