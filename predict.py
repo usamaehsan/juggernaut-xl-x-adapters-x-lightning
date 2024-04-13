@@ -312,6 +312,7 @@ class Predictor(BasePredictor):
             ip_adapter_image=ip_image,
             guidance_scale= guidance_scale
             )
+        print("10")
         outputs= [output]
 
         self.pipe.unfuse_lora()
