@@ -24,7 +24,7 @@ from diffusers import (
     LMSDiscreteScheduler,
     PNDMScheduler,
     UniPCMultistepScheduler,
-    KarrasDPM
+    # KarrasDPM
 )
 from controlnet_aux import (
     HEDdetector,
@@ -45,7 +45,7 @@ SCHEDULERS = {
     "DDIM": DDIMScheduler,
     "DPMSolverMultistep": DPMSolverMultistepScheduler,
     "HeunDiscrete": HeunDiscreteScheduler,
-    "KarrasDPM": KarrasDPM,
+    # "KarrasDPM": KarrasDPM,
     "K_EULER_ANCESTRAL": EulerAncestralDiscreteScheduler,
     "K_EULER": EulerDiscreteScheduler,
     "PNDM": PNDMScheduler,
