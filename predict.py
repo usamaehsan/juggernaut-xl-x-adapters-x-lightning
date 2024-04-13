@@ -249,7 +249,7 @@ class Predictor(BasePredictor):
             adapters.append(self.lineart_adapter)
             conditioning_scales.append(lineart_conditioning_scale)
             print("3")
-            lineart_image = Image.open(lineart_image).convert('RGB')
+            lineart_image = Image.open(lineart_image)
             img = self.lineart_detector(lineart_image, detect_resolution=384, image_resolution=1024).convert('RGB')
             print("4")
             i = resize_image(img, max_width if not w else w, max_height if not w else h)
@@ -259,7 +259,7 @@ class Predictor(BasePredictor):
             print("5")
         
         if depth_image:
-            depth_image = Image.open(depth_image).convert('RGB')
+            depth_image = Image.open(depth_image)
             adapters.append(self.depth_midas_adapter)
             conditioning_scales.append(depth_conditioning_scale)
             img = self.midas_depth_detector(depth_image, detect_resolution=384, image_resolution=1024).convert('RGB')
