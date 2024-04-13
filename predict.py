@@ -40,7 +40,7 @@ from diffusers.models import AutoencoderKL
 import json
 from huggingface_hub import hf_hub_download
 from compel import Compel, ReturnedEmbeddingsType
-
+from diffusers.utils import load_image, make_image_grid
 
 
 SCHEDULERS = {
@@ -248,6 +248,7 @@ class Predictor(BasePredictor):
         if lineart_image:
             adapters.append(self.lineart_adapter)
             conditioning_scales.append(lineart_conditioning_scale)
+            lineart_image = load_image(lineart_image)
             img = self.lineart_detector(lineart_image, detect_resolution=384, image_resolution=1024).convert('RGB')
             i = resize_image(img, max_width if not w else w, max_height if not w else h)
             if not w:
@@ -255,6 +256,7 @@ class Predictor(BasePredictor):
             images.append(i)
         
         if depth_image:
+            depth_image = load_image(depth_image)
             adapters.append(self.depth_midas_adapter)
             conditioning_scales.append(depth_conditioning_scale)
             img = self.midas_depth_detector(depth_image, detect_resolution=384, image_resolution=1024).convert('RGB')
